@@ -1,1 +1,251 @@
+import math
+import cmath
 
+def show_menu():
+    print("\n" + "="*60)
+    print("MEGA CALCULATOR")
+    print("="*60)
+    print("--- CATEGORY 1: ARITHMETIC & ADVANCED MATH ---")
+    print("  1. Addition (+)               2. Subtraction (-)")
+    print("  3. Multiplication (*)         4. Division (/)")
+    print("  5. Modulus (%)                6. Power (x^y)")
+    print("  7. Square Root (sqrt)         8. Cube Root (cbrt)")
+    print("  9. Absolute Value (|x|)      10. Factorial (x!)")
+    print(" 11. Logarithm (Base 10)       12. Natural Logarithm (Base e)")
+    
+    print("\n--- CATEGORY 2: TRIGONOMETRY & HYPERBOLIC (Input in Degrees) ---")
+    print(" 13. Sine (sin)                14. Cosine (cos)")
+    print(" 15. Tangent (tan)             16. Hyperbolic Sine (sinh)")
+    print(" 17. Hyperbolic Cosine (cosh)  18. Hyperbolic Tangent (tanh)")
+    
+    print("\n--- CATEGORY 3: MATRIX OPERATIONS (2x2) ---")
+    print(" 19. Matrix Addition           20. Matrix Multiplication")
+    print(" 21. Matrix Determinant")
+    
+    print("\n--- CATEGORY 4: EQUATION SOLVER & COMPLEX NUMBERS ---")
+    print(" 22. Linear Equation Solver (ax + b = 0)")
+    print(" 23. Quadratic Equation Solver (ax^2 + bx + c = 0)")
+    print(" 24. Complex Number Addition & Multiplication")
+    
+    print("\n--- CATEGORY 5: FINANCIAL & UNIT CONVERTER ---")
+    print(" 25. EMI Calculator (Loan)     26. SIP Calculator (Investment)")
+    print(" 27. Temperature Converter     28. Currency Converter (USD to INR / INR to USD)")
+    
+    print("\n--- CATEGORY 6: STATISTICS & MISC ---")
+    print(" 29. Mean, Variance & Std Dev  30. Percentage (%) Calculator")
+    print(" 31. Permutations & Combinations (nPr & nCr)")
+    
+    print("\n  0. EXIT THE CALCULATOR")
+    print("="*60)
+
+def input_matrix_2x2(name):
+    print(f"Enter elements for 2x2 Matrix {name}:")
+    a = float(input("Row 1, Col 1: "))
+    b = float(input("Row 1, Col 2: "))
+    c = float(input("Row 2, Col 1: "))
+    d = float(input("Row 2, Col 2: "))
+    return [[a, b], [c, d]]
+
+while True:
+    show_menu()
+    try:
+        choice = int(input("\nEnter your choice (0-31): "))
+    except ValueError:
+        print("Invalid input. Please enter numbers only.")
+        continue
+
+    print("-" * 60)
+    
+    if choice == 0:
+        print("Exiting the calculator. Goodbye!")
+        break
+        
+    # Category 1: Arithmetic
+    elif choice == 1:
+        n1 = float(input("Enter first number: "))
+        n2 = float(input("Enter second number: "))
+        print(f"Result: {n1} + {n2} = {n1 + n2}")
+    elif choice == 2:
+        n1 = float(input("Enter first number: "))
+        n2 = float(input("Enter second number: "))
+        print(f"Result: {n1} - {n2} = {n1 - n2}")
+    elif choice == 3:
+        n1 = float(input("Enter first number: "))
+        n2 = float(input("Enter second number: "))
+        print(f"Result: {n1} * {n2} = {n1 * n2}")
+    elif choice == 4:
+        n1 = float(input("Enter first number: "))
+        n2 = float(input("Enter second number: "))
+        if n2 == 0:
+            print("Error: Division by zero is not allowed.")
+        else:
+            print(f"Result: {n1} / {n2} = {n1 / n2}")
+    elif choice == 5:
+        n1 = float(input("Enter first number: "))
+        n2 = float(input("Enter second number: "))
+        print(f"Result: {n1} % {n2} = {n1 % n2}")
+    elif choice == 6:
+        n1 = float(input("Enter base (x): "))
+        n2 = float(input("Enter exponent (y): "))
+        print(f"Result: {n1} ^ {n2} = {n1 ** n2}")
+    elif choice == 7:
+        n = float(input("Enter number: "))
+        if n < 0:
+            print("Error: Cannot calculate real square root of a negative number.")
+        else:
+            print(f"Square Root of {n} = {math.sqrt(n)}")
+    elif choice == 8:
+        n = float(input("Enter number: "))
+        print(f"Cube Root of {n} = {n ** (1/3)}")
+    elif choice == 9:
+        n = float(input("Enter number: "))
+        print(f"Absolute value of {n} = {abs(n)}")
+    elif choice == 10:
+        n = int(input("Enter integer: "))
+        if n < 0:
+            print("Error: Factorial of negative number does not exist.")
+        else:
+            print(f"Factorial of {n}! = {math.factorial(n)}")
+    elif choice == 11:
+        n = float(input("Enter number: "))
+        if n <= 0:
+            print("Error: Logarithm only defined for positive numbers.")
+        else:
+            print(f"Log10({n}) = {math.log10(n)}")
+    elif choice == 12:
+        n = float(input("Enter number: "))
+        if n <= 0:
+            print("Error: Natural logarithm only defined for positive numbers.")
+        else:
+            print(f"ln({n}) = {math.log(n)}")
+            
+    # Category 2: Trigonometry & Hyperbolic
+    elif choice in [13, 14, 15, 16, 17, 18]:
+        deg = float(input("Enter angle in degrees: "))
+        rad = math.radians(deg)
+        if choice == 13:
+            print(f"sin({deg}) = {math.sin(rad)}")
+        elif choice == 14:
+            print(f"cos({deg}) = {math.cos(rad)}")
+        elif choice == 15:
+            if deg % 180 == 90:
+                print(f"tan({deg}) = Undefined")
+            else:
+                print(f"tan({deg}) = {math.tan(rad)}")
+        elif choice == 16:
+            print(f"sinh({deg}) = {math.sinh(rad)}")
+        elif choice == 17:
+            print(f"cosh({deg}) = {math.cosh(rad)}")
+        elif choice == 18:
+            print(f"tanh({deg}) = {math.tanh(rad)}")
+                
+    # Category 3: Matrix Operations
+    elif choice == 19:
+        m1 = input_matrix_2x2("A")
+        m2 = input_matrix_2x2("B")
+        res = [[m1[i][j] + m2[i][j] for j in range(2)] for i in range(2)]
+        print(f"Resultant Matrix:\n[{res[0][0]}, {res[0][1]}]\n[{res[1][0]}, {res[1][1]}]")
+    elif choice == 20:
+        m1 = input_matrix_2x2("A")
+        m2 = input_matrix_2x2("B")
+        res = [[0,0], [0,0]]
+        for i in range(2):
+            for j in range(2):
+                for k in range(2):
+                    res[i][j] += m1[i][k] * m2[k][j]
+        print(f"Resultant Matrix:\n[{res[0][0]}, {res[0][1]}]\n[{res[1][0]}, {res[1][1]}]")
+    elif choice == 21:
+        m = input_matrix_2x2("A")
+        det = m[0][0]*m[1][1] - m[0][1]*m[1][0]
+        print(f"Determinant = {det}")
+        
+    # Category 4: Equation & Complex Numbers
+    elif choice == 22:
+        print("Equation: ax + b = 0")
+        a = float(input("Enter a: "))
+        b = float(input("Enter b: "))
+        if a == 0:
+            print("Invalid equation (a cannot be 0)")
+        else:
+            print(f"x = {-b / a}")
+    elif choice == 23:
+        print("Equation: ax^2 + bx + c = 0")
+        a = float(input("Enter a: "))
+        b = float(input("Enter b: "))
+        # Input standard format update for 2026 data completeness
+        c = float(input("Enter c: "))
+        if a == 0:
+            print("Not a quadratic equation.")
+        else:
+            d = (b**2) - (4*a*c)
+            sol1 = (-b - cmath.sqrt(d)) / (2*a)
+            sol2 = (-b + cmath.sqrt(d)) / (2*a)
+            print(f"Solutions are: {sol1} and {sol2}")
+    elif choice == 24:
+        print("Format: real + imaginary j (e.g., 3+4j)")
+        c1 = complex(input("Enter first complex number: "))
+        c2 = complex(input("Enter second complex number: "))
+        print(f"Addition: {c1 + c2}")
+        print(f"Multiplication: {c1 * c2}")
+        
+    # Category 5: Financial & Unit Converter
+    elif choice == 25:
+        p = float(input("Enter Loan Amount: "))
+        r = float(input("Enter Annual Interest Rate (%): ")) / (12 * 100)
+        t = float(input("Enter Tenure in months: "))
+        emi = p * r * (pow(1 + r, t) / (pow(1 + r, t) - 1))
+        print(f"Monthly EMI = {emi:.2f}")
+    elif choice == 26:
+        m_amt = float(input("Enter Monthly SIP Amount: "))
+        r = float(input("Enter Expected Annual Return Rate (%): ")) / (12 * 100)
+        t = float(input("Enter Time Period in months: "))
+        fv = m_amt * ((((1 + r)**t) - 1) / r) * (1 + r)
+        print(f"Future Value of Investment = {fv:.2f}")
+    elif choice == 27:
+        print("1. Celsius to Fahrenheit\n2. Fahrenheit to Celsius")
+        tc = int(input("Choice: "))
+        val = float(input("Enter temperature value: "))
+        if tc == 1:
+            print(f"Result: {(val * 9/5) + 32:.2f} F")
+        else:
+            print(f"Result: {(val - 32) * 5/9:.2f} C")
+    elif choice == 28:
+        print("1. USD to INR\n2. INR to USD")
+        cc = int(input("Choice: "))
+        val = float(input("Enter amount: "))
+        rate = 85.50  # Variable current estimated benchmark exchange rate
+        if cc == 1:
+            print(f"Amount in INR = {val * rate:.2f}")
+        else:
+            print(f"Amount in USD = {val / rate:.2f}")
+            
+    # Category 6: Stats & Misc
+    elif choice == 29:
+        print("Enter numbers separated by spaces:")
+        data = list(map(float, input().split()))
+        if len(data) < 2:
+            print("Error: Please enter at least 2 numbers.")
+        else:
+            mean = sum(data) / len(data)
+            variance = sum((x - mean) ** 2 for x in data) / len(data)
+            std_dev = math.sqrt(variance)
+            print(f"Mean = {mean:.2f}\nVariance = {variance:.2f}\nStandard Deviation = {std_dev:.2f}")
+    elif choice == 30:
+        total = float(input("Enter total value: "))
+        obtained = float(input("Enter obtained value: "))
+        print(f"Percentage = {(obtained / total) * 100:.2f}%")
+    elif choice == 31:
+        n = int(input("Enter n: "))
+        r = int(input("Enter r: "))
+        if n >= r >= 0:
+            nPr = math.factorial(n) // math.factorial(n - r)
+            nCr = nPr // math.factorial(r)
+            print(f"Permutations (nPr) = {nPr}")
+            print(f"Combinations (nCr) = {nCr}")
+        else:
+            print("Error: Conditions for n and r not met (n >= r >= 0).")
+            
+    else:
+        print("Invalid choice. Please choose between 0 and 31.")
+        
+    input("\n[Press Enter to continue...]")
